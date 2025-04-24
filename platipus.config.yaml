@@ -1,0 +1,17 @@
+database:
+  url: sqlite:///platipuslogs.db
+logs:
+  root_path: logs/
+modes:
+  development:
+    console: true
+    file: true
+    level: DEBUG
+  production:
+    console: false
+    file: true
+    level: WARNING
+  testing:
+    console: true
+    file: false
+    level: INFO
