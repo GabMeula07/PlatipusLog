@@ -10,7 +10,7 @@ modes:
   production:
     console: false
     file: true
-    level: WARNING
+    level: WARN
   testing:
     console: true
     file: false
