@@ -47,7 +47,7 @@ def main():
         print(f"{"-"*50}")
 
         print(
-        '''
+        '''\033[94m
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣠⣄⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⠶⠛⠉⠁⠀⠀⠀⠉⠛⠶⣤⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣠⣤⣤⣤⣤⣤⣤⠶⠛⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠛⢦⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -70,11 +70,11 @@ def main():
     | .__/|_|\__,_|\__|\__, | .__/ \__,_|___/
     | |                 __/ | |              
     |_|                |___/|_| 
-
+    \033[00m
         ''')
         print(f"{"-"*50}")
 
-        print("Init PLatipusLogger...")
+        print("\nInit PLatipusLogger...")
         print("Create a config file...")
         create_config_file()
         print("Create a config file: OK ")
