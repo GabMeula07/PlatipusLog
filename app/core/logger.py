@@ -17,7 +17,7 @@ class Logger:
             "INFO": { "color": 94, "level": 20},
             "WARN": { "color": 93, "level": 30},
             "ERROR": { "color": 91, "level": 40},
-            "CRITICAL": {"color": 95, "level": 50}
+            "CRITICAL": {"color": 41, "level": 50}
         }
 
     def _get_mode(self)->str:
