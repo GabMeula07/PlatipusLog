@@ -1,6 +1,11 @@
 import sys
 import yaml
 
+from app.models.logger import Base
+
+from sqlalchemy import create_engine
+
+
 
 def create_config_file(): 
     # default config
@@ -33,7 +38,28 @@ def create_config_file():
 
     with open("platipus.config.yaml", "w") as file:
             yaml.dump(config, file, default_flow_style=False)
+    
+    return config
         
+def create_database(config_url):
+    print("Criando conexão com o banco...")
+    engine = create_engine(config_url)
+    print("Migrando Models...")
+    Base.metadata.create_all(engine)
+
+def read_config():
+    try:
+        with open("platipus.config.yaml", "r") as file:
+            config = yaml.safe_load(file)
+
+    except FileNotFoundError:
+        print(f"Error: platipus.config.yaml not found.")
+        return None
+
+    return config
+     
+
+
 
 def main():
     if len(sys.argv) < 2:
@@ -76,8 +102,17 @@ def main():
 
         print("\nInit PLatipusLogger...")
         print("Create a config file...")
-        create_config_file()
+        config = create_config_file()
         print("Create a config file: OK ")
+        create_database(config["database"]["url"])
+        print("Database: OK")
+
+    elif cmd == "restart":
+        config = read_config()
+        create_database(config["database"]["url"])
+        print("Database: OK")
 
     else:
         print(f"Comand '{cmd}' not found")
+
+    
