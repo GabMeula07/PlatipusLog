@@ -1,5 +1,6 @@
 import sys
 import yaml
+import os
 
 from app.models.logger import Base
 
@@ -18,7 +19,7 @@ def create_config_file():
             "url": "sqlite:///platipuslogs.db"  
         },
         "logs": {
-            "root_path": "logs/"  
+            "root_path": "./logs"  
         },
         "modes": {
             "production": {
@@ -46,6 +47,8 @@ def create_config_file():
     return config
         
 def create_database(config_url):
+    
+
     print("Criando conexão com o banco...")
     engine = create_engine(config_url)
     print("Migrando Models...")
@@ -62,9 +65,6 @@ def read_config():
 
     return config
      
-
-
-
 def main():
     if len(sys.argv) < 2:
         print(''' commands: \n   init - Initialize platiputs environment
@@ -77,7 +77,7 @@ def main():
         print(f"{"-"*50}")
 
         print(
-        '''\033[94m
+        ''' \033[94m
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣠⣄⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⠶⠛⠉⠁⠀⠀⠀⠉⠛⠶⣤⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣠⣤⣤⣤⣤⣤⣤⠶⠛⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠛⢦⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -90,8 +90,8 @@ def main():
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢻⣯⡾⢸⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠛⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
         ''')
-        print(
-        '''
+
+        print(r'''
            _       _                         
           | |     | |                        
      _ __ | | __ _| |_ _   _ _ __  _   _ ___ 
@@ -100,9 +100,9 @@ def main():
     | .__/|_|\__,_|\__|\__, | .__/ \__,_|___/
     | |                 __/ | |              
     |_|                |___/|_| 
-    \033[00m
-        ''')
-        print(f"{"-"*50}")
+    
+     ''')
+        print(f"\033[00m {"-"*50}")
 
         print("\nInit PLatipusLogger...")
         print("Create a config file...")

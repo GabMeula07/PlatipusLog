@@ -8,7 +8,6 @@ class Logger:
 
         with open('platipus.config.yaml', 'r') as file:
             self.config = yaml.safe_load(file)
-            print(self.config)
 
         self.name = name
         self.mode = mode
