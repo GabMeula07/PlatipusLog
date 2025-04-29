@@ -1,4 +1,6 @@
 import yaml 
+ 
+from app.core.file_manager import PlatypusFileManager
 
 class Logger:
     def __init__(self, name: str, mode: str):
@@ -19,6 +21,8 @@ class Logger:
             "CRITICAL": {"color": 41, "level": 50}
         }
 
+        self.file_manager = PlatypusFileManager(self.config)
+
     def _get_mode(self)->str:
         return self.mode
 
@@ -26,6 +30,11 @@ class Logger:
         color_mode = self.levels[f"{level}"]["color"]
         if self._verify_mode(level=level):
             return
+        self.file_manager.insert_row_log_file(
+            name=self.name.upper(), 
+            mode=level,
+            msg=msg
+        )
         print(f"\033[{color_mode}m [{self.name.upper()}] {msg}")
         
     def _verify_mode(self, level: str):
