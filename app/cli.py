@@ -5,7 +5,11 @@ from app.models.logger import Base
 
 from sqlalchemy import create_engine
 
-
+def create_root_dir(config_url):
+    try: 
+        os.makedirs(config_url, exist_ok=True)
+    except Exception as e: 
+        print(f"Error in create folder: {e}")
 
 def create_config_file(): 
     # default config
@@ -104,6 +108,10 @@ def main():
         print("Create a config file...")
         config = create_config_file()
         print("Create a config file: OK ")
+        print("Create a Root Log Dir...")
+        create_root_dir(config["logs"]["root_path"])
+        print("Create a Root Log Dir: OK")
+
         create_database(config["database"]["url"])
         print("Database: OK")
 
